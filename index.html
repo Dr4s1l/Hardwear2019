@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>Pre-OBD Hacking</title>
+  <meta charset="UTF-8">
+  </meta>
+  <meta name="generator" content="Hovercraft! 1.0 http://regebro.github.com/hovercraft">
+  </meta>
+  <link rel="stylesheet" href="css/hovercraft.css" media="all">
+  </link>
+  <link rel="stylesheet" href="css/highlight.css" media="all">
+  </link>
+  <link rel="stylesheet" href="presentation/css/hovercraft.css" media="screen,projection">
+  </link>
+  <link rel="stylesheet" href="presentation/css/highlight.css" media="screen,projection">
+  </link>
+  <link rel="stylesheet" href="presentation/css/presentation.css" media="screen,projection">
+  </link>
+  <link rel="stylesheet" type="text/css" href="presentation/css/asciinema-player.css">
+  </link>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        showProcessingMessages: false,
+        messageStyle: "none",
+        TeX : { extensions : ['color.js'] }
+      });
+    </script>
+</head>
+
+<body class="impress-not-supported">
+  <div id="impress-help"></div>
+  <div id="impress" data-transition-duration="500">
+    <div class="step step-level-1" step="0" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" data-scale="1" data-x="0" data-y="0" data-z="0">
+      <div class="panel panel-primary"> <div class="panel-body"><h1 id="hacking-pre-obd-car-for-fun-and-horsepower"><strong>Hacking pre-OBD car for fun and Horsepower</strong></h1></div></div><img src="presentation/images/civic.gif" width="800px" height="500px"></img></div>
+    <div class="step step-level-1" step="1" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" data-scale="1" data-x="1600" data-y="0" data-z="0"><h1 id="today-s-victim"><em>Today's victim</em></h1>
+      <img src="presentation/images/deuxgrosses.jpg" width="800px" height="500px"></img></div>
+    <div class="step step-level-1" step="2" data-x="1600" data-y="700" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" data-scale="1" data-z="0"><h1 id="journey"><em>Journey</em></h1>
+      <ul>
+        <li>E85 build</li>
+        <li>Honda PGM-FI</li>
+        <li>Awsome potential association</li>
+        <li>Reversing S.T.R.I.K.E 7 Venom</li>
+        <li>Chipping non-documented ECU</li>
+      </ul>
+    </div>
+    <div class="step step-level-1" step="3" data-x="2800" data-y="1900" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" data-scale="1" data-z="0"><h1 id="what-are-we-not-talking-about"><em>What are we not talking about</em></h1>
+      <ul>
+        <li>CAN protocol analysis</li>
+        <li>OBD2 interaction</li>
+        <li>Conventional modern car hacking (playground quite limited)</li>
+      </ul>
+    </div>
+    <div class="step step-level-1" step="4" data-x="2800" data-y="3300" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" data-scale="1" data-z="0"><h1 id="how-e85-produce-power"><em>How E85 produce power</em></h1>
+      <p>E85 fuel as a smaller stoichiometric coefficient than common fuel, which mean
+        it needs more fuel to run properly. It is less lubricant than unleaded fuel and also more
+        corosive.</p>
+      <p>But the energetic efficiency is higher, which meen more HRSPRS !</p><img src="presentation/images/e85.jpg" width="800px" height="500px"></img></div>
+    <div class="step step-level-1" step="5" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" data-scale="1" data-x="2800" data-y="4700" data-z="0"><h1 id="honda-pgmfi"><em>Honda PGMFI</em></h1>
+      <p>One of the first manufacturer to include electronics in car.
+        PGM-FI system are still used today in motorcycle and honda car.</p>
+      <p>For this talk there is no VTEC (sorry K20 addicts).</p><img src="presentation/images/pgmfi.jpg" width="450px" height="300px"></img><img src="presentation/images/honda.jpg" width="450px" height="300px"></img></div>
+    <div class="step step-level-1" step="6" data-x="2800" data-y="8900" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" data-scale="1" data-z="0"><h1 id="honda-pgmfi-for-e85"><em>Honda PGMFI for E85</em></h1>
+      <p>As it is an electronic fuel management it should be possible to get this thing
+        runnning on E85.</p>
+      <p>E85 run will provide :</p>
+      <ul>
+        <li>Cheap fuel</li>
+        <li>Environment friendly fuel (less fine particles)</li>
+        <li>HRSPRS !!</li>
+      </ul><img src="presentation/images/power.gif" width="400px" height="300px"></img></div>
+    <div class="step step-level-1" step="7" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" data-scale="1" data-x="2800" data-y="13100" data-z="0"><h1 id="pre-obd-thing"><em>Pre-OBD thing ?</em></h1>
+      <p>Honda provides a OBDish protocol on the PG7 ECU.
+        It is not named as on-board-dignostic for now.</p>
+      <p>Diagnostic are done by LED messages.
+        It seem to get serial logging capabilities too.</p><img src="presentation/images/pcb.jpg" width="300px" height="500px"></img></div>
+    <div class="step step-level-1" step="8" data-x="2600" data-y="13400" data-scale="0.1" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" data-z="0"></div>
+    <div class="step step-level-1" step="9" data-x="0" data-y="15500" data-rotate-x="-90" data-rotate-y="0" data-rotate-z="0" data-scale="0.1" data-z="0">
+      <h1 id="on-board-diagnosis-or-the-story-of-an-unattended-association"><strong>On-Board diagnosis or the story of an unattended association</strong></h1>
+    </div>
+    <div class="step step-level-1" step="10" data-x="22" data-y="2100" data-rotate-x="-90" data-rotate-y="0" data-rotate-z="0" data-scale="0.1" data-z="0"><h1 id="datalogging"><em>Datalogging</em></h1>
+      <p>So in the process of getting information coming from the car, I decided to
+        attach the serial port(strongly possible UART), to my keyboard screen:</p><img src="presentation/images/strike.jpg" width="800px" height="500px"></img></div>
+    <div class="step step-level-1" step="11" data-x="22" data-z="-1200" data-rotate-x="-90" data-rotate-y="0" data-rotate-z="0" data-scale="0.1" data-y="2100"><h1 id="woops"><em>Woops !</em></h1>
+      <img src="presentation/images/sqli.png" width="900px" height="600px"></img>
+      <p>They say it will be patched with the new website coming in October, it is
+        not the same company anymore so they did not have any documentation on STRIKE7
+        product.</p>
+      <p>Until this patch, every executable found on site may have been backdoored...</p>
+    </div>
+    <div class="step step-level-1" step="12" data-rotate-x="-90" data-rotate-y="0" data-rotate-z="0" data-scale="0.1" data-x="22" data-y="2100" data-z="-2400"><h1 id="firmware-analysis"><em>Firmware analysis</em></h1>
+      <p>As firmware updater can be found online, I decided to reverse it to find out
+        how to communicate over the serial interface:</p>
+      <ul>
+        <li>Binwalk to the rescue</li>
+        <li>FS analysis</li>
+        <li>Flash pocedure extraction</li>
+      </ul>
+      <p>
+      <asciinema-player src="images/short.cast"></asciinema-player>
+      <script src="js/asciinema-player.js"></script>
+      <asciinema-player src="images/imx.cast"></asciinema-player>
+      <script src="js/asciinema-player.js"></script>
+    </div>
+    <div class="step step-level-1" step="13" data-rotate-x="-90" data-rotate-y="0" data-rotate-z="0" data-scale="0.1" data-x="22" data-y="2100" data-z="-3600"><h1 id="firmware-analysis-caveats"><em>Firmware analysis caveats</em></h1>
+      <p>So it is a conventional IMX233 target, kind a lot of information can be found.</p>
+      <p>To get the wanted result, just disable the auto start-up of QT app, then plug a
+        USB-Serial converter and should be good...</p>
+      <p>But... USB port are not standard.</p><img src="presentation/images/usb1.jpg" width="400px" height="300px"></img><img src="presentation/images/usb2.jpg" width="400px" height="300px"></img>
+      <p>I find someone else taking notes on reverse this thing <a href="https://gist.github.com/0xdevalias/7652064">https://gist.github.com/0xdevalias/7652064</a></p>
+    </div>
+    <div class="step step-level-1" step="14" data-x="-7" data-y="2100" data-z="-3607" data-scale="0.015" data-rotate-x="-90" data-rotate-y="0" data-rotate-z="0"></div>
+    <div class="step step-level-1" step="15" data-z="-8407" data-rotate-x="-90" data-rotate-y="0" data-rotate-z="0" data-scale="0.015" data-x="-7" data-y="2100"><h1 id="ecu-chipping"><em>ECU chipping</em></h1>
+      <p>The process of ECU chipping, which is swaping ROM, is a common practice on HONDA
+        models.</p>
+      <p>To get E85 running, a simple ECU swap should be possible, but we are hacker right?</p>
+      <p>So I try to do ECU chipping by myself without any knowledge and with few information.</p><img src="presentation/images/pcb.jpg" width="800px" height="500px"></img></div>
+    <div class="step step-level-1" step="16" data-rotate-x="-90" data-rotate-y="0" data-rotate-z="0" data-scale="0.015" data-x="-7" data-y="2100" data-z="-13207"><h1 id="information-gathering"><em>Information gathering</em></h1>
+      <p>So I ask almost everywhere if someone as done this thing before.</p>
+      <p>@Icefluid which is a specialist on Honda chipping did not work on this ECU.</p>
+      <p>@Honda did not answer my tweet.</p>
+      <p>I ask a local preparator to help me (Supermap autosport), he can read my extracted,
+        modified map with his pro tool and confirm if the Dump is good or not.</p>
+      <p>Hondata seem's promising too but I discover a bug inside it.</p>
+      <p>PGM-FI.org Grassroot engine managment was the most valuable ressource.</p>
+      <p>Someone has already dump the content of PG7 ECU. So I try to dump it by myself.</p>
+      <p>
+        <asciinema-player src="images/minipro.cast"></asciinema-player>
+        <script src="js/asciinema-player.js"></script>
+    </div>
+    <div class="step step-level-1" step="17" data-rotate-x="-90" data-rotate-y="0" data-rotate-z="0" data-scale="0.015" data-x="-7" data-y="2100" data-z="-18007"><h1 id="epic-fail"><em>Epic fail</em></h1>
+      <p>The M38128 seem's to be a mask ROM and not so much information are available,
+        need to dig in old datasheet</p><img src="presentation/images/databook.png" width="300px" height="500px"></img></div>
+    <div class="step step-level-1" step="18" data-rotate-x="-90" data-rotate-y="0" data-rotate-z="0" data-scale="0.015" data-x="-7" data-y="2100" data-z="-22807"><h1 id="moar-fails"><em>Moar fails !</em></h1>
+      <p>Asuming it's a 128kbit memory I use the 27C128 configuration to dump content.
+        but it looks like some OKI batch are misstamped, explaining probably why
+        the internet dump is 32ko size.</p><img src="presentation/images/fuckrom.png" width="900px" height="600px"></img></div>
+    <div class="step step-level-1" step="19" data-rotate-x="-90" data-rotate-y="0" data-rotate-z="0" data-scale="0.015" data-x="-7" data-y="2100" data-z="-27607"><h1 id="what-to-think"><em>What to think</em></h1>
+      <p>So the internet dump is 32ko size but it look like it is the same map repeated twice.</p>
+      <p>I almost burned the ROM unsoldering it, maybe the ROM size is really 128kbit...</p>
+      <p>Need some valid thing to refer on.</p>
+      <p>After further research, the datalogging system on most modern version is activated
+        by code/firmware modification, still don't get it on my old one despite CN3(datalog)
+        port is present.</p><img src="presentation/images/PE7-682-87_Civic_Si.png" width="400px" height="300px"></img><img src="presentation/images/pe7-85_Civic_AH53.png" width="400px" height="300px"></img></div>
+    <div class="step step-level-1" step="20" data-rotate-x="-90" data-rotate-y="0" data-rotate-z="0" data-scale="0.015" data-x="-7" data-y="2100" data-z="-32407"><h1 id="osint-to-the-rescue"><em>OSINT to the rescue</em></h1>
+      <p>After doing some OSINT task I finally found something interresting, a old Honda
+        racerom :</p><img src="presentation/images/raceromfofo.png" width="900px" height="200px"></img></div>
+    <div class="step step-level-1" step="21" data-x="-7" data-y="2100" data-z="-32407" data-scale="0.008" data-rotate-x="-90" data-rotate-y="0" data-rotate-z="0"></div>
+    <div class="step step-level-1" step="22" data-x="-7" data-y="2100" data-z="-64814" data-rotate-x="-90" data-rotate-y="0" data-rotate-z="0" data-scale="0.008"><h1 id="annnnnnnd-i-m-lost"><em>Annnnnnnd... I'm lost</em></h1>
+      <p>So apparently on this one they decided to split the ROM in 2x64kbit memory with
+        an address decoder :</p><img src="presentation/images/doubleecu.jpg" width="400px" height="300px"></img><img src="presentation/images/ecuschematics.jpg" width="400px" height="300px"></img></div>
+    <div class="step step-level-1" step="23" data-rotate-x="-90" data-rotate-y="0" data-rotate-z="0" data-scale="0.008" data-x="-7" data-y="2100" data-z="-97221"><h1 id="address-decoding"><em>Address decoding</em></h1>
+      <p>So I assume my initial guess of a 128kb memory was the right one and I decide to
+        reconstruct this memory by hand with a basic concatenation. This map will have
+        datalogging on by default (referring ECU pictures).</p>
+      <p>This did not work because with the use of address decoder the start af the second
+        memory is referred +1 added with previous memory end :</p><img src="presentation/images/addressdecoder.jpg" width="800px" height="500px"></img></div>
+    <div class="step step-level-1" step="24" data-rotate-x="-90" data-rotate-y="0" data-rotate-z="0" data-scale="0.008" data-x="-7" data-y="2100" data-z="-129628"><h1 id="glueing-things-together"><em>Glueing things together</em></h1>
+      <p>My reconstructed map can be read by my local tuner, so let's move on and burn this on chip.</p>
+      <p>This kind of old chip was difficult to find (no time for delivery) but at the end my local dealership have one last.</p>
+      <p>The choosen one is a 27LC256. Yes I know it is a 256 kbit memory but I will use the trick I discover from the internet dump
+        and burn it 2 times.</p><img src="presentation/images/ah53map.png" width="800px" height="500px"></img></div>
+    <div class="step step-level-1" step="25" data-rotate-x="-90" data-rotate-y="0" data-rotate-z="0" data-scale="0.008" data-x="-7" data-y="2100" data-z="-162035"><h1 id="messed-up-again"><em>Messed up ... again</em></h1>
+      <p>This time I completly screwed up the flashing process.</p>
+      <p>In my dd operation of creating the racerom repeated 2 times I only create the map
+        on the "second sector", so first part of the map is empty...</p>
+      <p>Burning this on the EPROM (UV erasable) and plugging it to the car:</p><img src="presentation/images/onboard.jpg" width="800px" height="500px"></img></div>
+    <div class="step step-level-1" step="26" data-rotate-x="-90" data-rotate-y="0" data-rotate-z="0" data-scale="0.008" data-x="-7" data-y="2100" data-z="-194442"><h1 id="odd-things-happen"><em>Odd things happen</em></h1>
+      <p>The car lights up without any error, so first I guess this was good.</p>
+      <p>But when turning the key it did not start. My first conclusion were :</p>
+      <ul>
+        <li>Racerom so maybe the fuel pump is on a separate circuit (don't hear it)</li>
+        <li>Wrong checksum</li>
+        <li>No idea...</li>
+      </ul>
+      <p>so I decided to dump the content again where I discover the flash fail.</p>
+    </div>
+    <div class="step step-level-1" step="27" data-rotate-x="-90" data-rotate-y="0" data-rotate-z="0" data-scale="0.008" data-x="-7" data-y="2100" data-z="-226849"><h1 id="not-such-a-big-issue-you-say"><em>Not such a big issue you say?</em></h1>
+      <p>To empty this old chip I need to get a UV eraser, so in order I try :</p>
+      <ul>
+        <li>Electronician friends (old one too ;)</li>
+        <li>Hacker lab</li>
+        <li>Beauty institute</li>
+      </ul>
+    </div>
+    <div class="step step-level-1" step="28" data-rotate-x="-90" data-rotate-y="0" data-rotate-z="0" data-scale="0.008" data-x="-7" data-y="2100" data-z="-259256"><h1 id="then-solution"><em>Then solution !</em></h1>
+      <img src="presentation/images/nono.jpg" width="800px" height="500px"></img></div>
+    <div class="step step-level-1" step="29" data-rotate-x="-90" data-rotate-y="0" data-rotate-z="0" data-scale="0.008" data-x="-7" data-y="2100" data-z="-291663"><h1 id="current-state-of-the-project"><em>Current state of the project</em></h1>
+      <p>Cat toy are not so efficient deleting a 256kbit memory (2 week and almost 20% erased).</p>
+      <p>If you got a UV eraser here with you please reach me out.</p>
+      <p>Kinda sure this will work (or even more surprises?)</p><img src="presentation/images/current_state.jpg" width="800px" height="500px"></img></div>
+    <div class="step step-level-1" step="30" data-rotate-x="-90" data-rotate-y="0" data-rotate-z="0" data-scale="0.008" data-x="-7" data-y="2100" data-z="-324070"><h1 id="what-next"><em>What next ?</em></h1>
+      <ul>
+        <li>Flash the correct ROM (should work)</li>
+        <li>As my local tuner read the map he also can modify it</li>
+        <li>Finally close this 2 month project and run E85 dammit !</li>
+      </ul>
+    </div>
+    <div class="step step-level-1" step="31" data-rotate-x="-90" data-rotate-y="0" data-rotate-z="0" data-scale="0.008" data-x="-7" data-y="2100" data-z="-356477"><h1 id="question"><em>Question ?</em></h1>
+      <ul>
+        <li>@dr4s1l</li>
+        <li><a href="https://github.com/Dr4s1l">https://github.com/Dr4s1l</a></li>
+        <li>Website coming soon</li>
+      </ul>
+    </div>
+  </div>
+  <script type="text/javascript" src="js/impress.js"></script>
+  <script type="text/javascript" src="js/gotoSlide.js"></script>
+  <script type="text/javascript" src="js/hovercraft.js"></script>
+</body>
+
+</html>
